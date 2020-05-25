@@ -1,0 +1,204 @@
+{% extends 'instalikeshome.html' %}
+
+{% block style %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'styles/userprofile.css'%}">
+{% endblock %}
+{% block content %}
+  {% if message%}
+    <div id="message">{{message}}</div>
+  {% endif %}
+<div id="container">
+    <div id="image">
+        <img src="{{user.userprofile.image.url}}" width="90" height="90">
+    </div>
+    <div id="usersinfo">
+        <h3><span style="font-size:1.7rem;font-weight:500;font-family:sans-serif;">{{user.userprofile.user}}</span></h3>
+        <span style="font-size:1.1rem;">{{user.email}}</span>
+    </div>
+<input type="submit" value="Edit Profile" id="select-update">
+<div id="update">
+<form id="myform" action="update_user" method="POST" enctype="multipart/form-data"> 
+{% csrf_token %}
+    <div class="updateinfo">
+    <label>Username:</label><br>
+    <input type="text"  id="username_after" name="username_changed" value={{user.userprofile.user}}><br>
+    </div>
+    <div class="updateinfo">
+    <label>Name:</label><br>
+    <input type="text" id="nickname" name="othername" value={{user.userprofile.name}}><br>
+    </div>
+    <div class="updateinfo">
+    <label>Email:</label><br>
+    <input type="text" id="gmali" name="email" value={{user.email}}><br>
+    </div>
+    <div class="updateinfo">
+    <label>image*</label><br>
+    <span style="font-size:1.1rem">selected image : {{user.userprofile.image.name}}</span><br>
+    <input type="file" accept="image/*" name="file_changed"><br>
+    </div>
+    <input id="update-btn" type="submit" onclick=" return checkBlank()"value="Update">
+    <input id="cancel-btn" onclick="return cancel()" type="submit" value="Cancel">
+    </form>
+</div>
+<div id="user-othername">
+{{user.userprofile.name}}
+</div>
+<div id="desc">
+{{user.userprofile.desc|linebreaks}}</div>
+<input id="select-bio-que-btn" type="submit" value="Update Bio">
+<div id="update-bio-select">
+<div class="updateinfo">
+    <label>Bio:</label><br>
+    <textarea name="bio" placeholder="Enter your new bio here"></textarea>
+    </div>
+    <input id="update-bio-btn" type="submit" value="Update">
+<input id="cancel-bio-btn" onclick="return cancel()" type="submit" value="Cancel">
+</div>
+</div>
+{% if  allfriends  %}
+<div id="usersfriends">
+	<div class="heading">Your friends</div>
+	<div id="inf">
+	{% for i in allfriends %}
+	<div class="sugges_profile">
+	<img src="{{i.user.userprofile.image.url}}" width="50" height="50">
+	<div class="innerdiv">
+	<a href="{% url 'homepage_user' i.user %}">{{i.user}}</a>
+	<div>
+	<input type="submit" onclick="remove_add_frnd({{i.user.customuser.id}},this)" value="Friends">
+	</div>	
+	</div>
+	</div>
+	{% endfor %}
+</div>
+</div>
+{% else %}
+<div id="no_friends">
+You have no friends :( Send friend requests to make friends
+</div>
+{% endif%}
+<div id="unfriend-alert">
+	<div id="inf">
+		<div id="alert-heading">
+		</div>	
+		<input type="submit" value="unfriend"  id="unfriend-user-btn">
+		<input type="submit" value="cancel"   id="cancel-unfriend-btn">	
+	</div>
+</div>
+{% endblock%}
+
+{% block script%}
+<script>
+function checkBlank(){
+  var l=document.getElementById("username_after");
+  var m=document.getElementById("nickname");
+  var p=document.getElementById("gmail");
+  if(l.value==""|| m.value==""||p.value==""){
+    alert("fields cannot be empty");
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+var m="{{user.userprofile.desc|linebreaks}}"
+function cancel(){
+  document.getElementById("user-othername").style.display="block";
+    document.getElementById("update").style.display="none";
+    document.getElementById("desc").style.display="block";
+    document.getElementById("select-bio-que-btn").style.display="inline-block";
+    return false;
+}
+
+document.getElementById("select-update").onclick=function(){
+  document.getElementById("user-othername").style.display="none";
+    document.getElementById("update").style.display="block";
+    document.getElementById("desc").style.display="none";
+    document.getElementById("select-bio-que-btn").style.display="none";
+}
+document.querySelector("textarea").onkeypress=function(event){
+  if(event.keyCode==13){
+    event.preventDefault();
+    this.value=this.value+"\n";
+  }
+};
+
+var csrfcookie = function () {
+  var cookieValue = null,
+    name = "csrftoken";
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) == name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+var otherob;
+var id_obj;
+function remove_add_frnd(id,self){
+    if (self.value=="Friends"){
+      otherob=self;
+      id_obj=id;
+      var username = self.parentNode.parentNode.childNodes[1].childNodes[0].textContent;
+    var x = document.getElementById("alert-heading");
+    x.textContent = "Unfriend  " + username + "?";
+    document.getElementById("unfriend-alert").style.display = "flex";
+    }
+    else if(self=="confirm-unfriend"){
+      document.getElementById("unfriend-alert").style.display = "none";
+       otherob.parentNode.parentNode.parentNode.style.display="none";
+          var obj = new XMLHttpRequest();
+    var para = "id=" + id_obj;
+    obj.open("POST", "remove_friend", true);
+    obj.onreadystatechange = function () {
+      if (obj.readyState == 4 && obj.status==200) {
+
+      }
+    }
+    obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    obj.setRequestHeader("X-CSRFToken", csrfcookie());
+    obj.send(para);
+}
+};
+document.getElementById("unfriend-user-btn").addEventListener("click", function () {
+  remove_add_frnd(4, "confirm-unfriend");
+});
+
+
+document.getElementById("cancel-unfriend-btn").addEventListener('click', function (e) {
+  document.getElementById("unfriend-alert").style.display = "none";
+});
+
+document.getElementById("select-bio-que-btn").onclick=function(){
+  document.getElementById("select-bio-que-btn").style.display="none";
+  document.getElementById("update-bio-select").style.display="block";
+}
+document.getElementById("update-bio-btn").onclick=function(e){
+    var  desc=document.querySelector("textarea").value;
+    var obj = new XMLHttpRequest();
+    var para = "bio=" + desc;
+    obj.open("POST", "update_userdesc_ajax", true);
+    obj.onreadystatechange = function () {
+      if (obj.readyState == 4 && obj.status == 200) {
+        console.log("done");
+        location.reload();
+
+      }
+    };
+    obj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    obj.setRequestHeader("X-CSRFToken", csrfcookie());
+    obj.send(para);
+}
+document.getElementById("cancel-bio-btn").onclick=function(){
+  document.getElementById("update-bio-select").style.display="none";
+  document.getElementById("select-bio-que-btn").style.display='inline-block';
+  return false;
+}
+</script>
+{% endblock %}

@@ -1,0 +1,300 @@
+body{
+    overflow:hidden;
+    margin:0;
+    text-align:center;
+}
+#container{
+    display:inline-block;
+    overflow-y:scroll;
+    scrollbar-width:none;
+    border-right:1px solid black;
+    margin-top:20px;
+    width:400px;
+    max-height:640px;
+    padding:10px;
+    align-items:center;
+    justify-content: center;
+    outline:none;
+    border:1px solid black;
+    box-shadow:5px 8px gray;
+    text-align:initial;
+}
+#container .images{
+    border:6px soild black;
+    margin:20px;
+    align-items:center;
+    text-align:center;
+    justify-content: center;
+    width:90%;
+    height:250px;
+    padding:10px 3px;
+    position:relative;
+    border-bottom:1px solid rgba(0,0,0,0.5);
+}
+.image{
+    cursor:pointer;
+}
+.fa-heart{
+    position:absolute;
+    color:red;
+    cursor:pointer;
+    left:10px;
+}
+.images p{
+    position:absolute;
+    bottom:2px;
+    left:10px;
+}
+#likedby{
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:rgba(0,0,0,0.7);
+    align-items:center;
+    display:none;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+}
+#likedby #content{
+    width:30%;
+    max-height:300px;
+    opacity:1;
+    margin:200px auto;
+    background-color:white;
+    position: relative;
+    transform:scale(2);
+    animation:transform 0.1s linear;
+    animation-fill-mode: forwards;
+    border-radius: 6px;
+    text-align:center;
+}
+@keyframes transform {
+    to{
+        transform:scale(1);
+    }
+}
+.images p a{
+    text-decoration:none;
+    color:black;
+    font-weight: bold;
+}
+#likedby #content #heading{
+    display: inline-flex;
+    position:relative;
+    width:97%;
+    height:20px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    border-bottom:1px solid black;
+    text-align:center;
+    padding:14px 4px 0px 4px;
+    padding-bottom:6px;
+    vertical-align: center;
+    align-items:center;
+    justify-content: center;
+}
+#likedby #content #heading p{
+    margin-top:2px;
+    text-align:center;
+    font-size:1.3rem;
+}
+#likedby #content #heading #close{
+    transform:rotate(45deg);
+    position:absolute;
+    bottom:0.4px;
+    right:1px;
+    cursor: pointer;
+    padding:4px;
+    opacity:1;
+    font-size:2.3rem;
+    color:black;
+}
+#likedby #content #likes{
+    position: relative;
+    width:97%;
+    margin:2px auto;
+    overflow-y: scroll;
+    text-align:initial;
+    max-height:250px;
+    scrollbar-width: none;
+}
+
+
+/* other users */
+#otherusers{
+    display: inline-block;
+    position:fixed;
+    width:300px;
+    height:86%;
+    margin-left:100px;
+    margin-top:60px;
+    margin-bottom:60px;
+    background:white;
+    text-align:center;
+    padding-bottom:6px;
+    justify-content: center;
+    align-items: center;
+    border:1px solid rgb(0,0,0,0.5);
+    box-shadow:3px 5px 4px gray;
+    border-radius:6px;
+}
+#otherusers .heading{
+    height:30px;
+    width:95%;
+    font-size:1.6rem;
+    padding:4px;
+}
+#otherusers #inf{
+    overflow-y:scroll;
+    scrollbar-width: none;
+    height:90%;
+}
+.sugges_profile{
+    padding:8px;
+    padding-bottom:20px;
+    height:50px;
+    width:70%;
+    margin:6px auto;
+    justify-content: center;
+    align-items: center;
+    border-bottom:1px solid rgb(0,0,0,0.5);
+    box-shadow:1px 2px 2px lightgray;
+}
+.sugges_profile img{
+    vertical-align: middle;
+    border-radius:50%;
+    line-height:50px;
+}
+.sugges_profile .innerdiv{
+    margin-left:4px;    
+    display:inline-block;
+    margin-top:2px;
+    font-family:sans-serif; 
+    font-weight:500;
+    vertical-align:middle;
+}
+.sugges_profile .innerdiv #username{
+    cursor:pointer;
+    margin-bottom:4px;
+}
+.sugges_profile .innerdiv #username a{
+    text-decoration:none;
+    color:black;
+
+}
+
+.sugges_profile .innerdiv input{
+background:blue;
+color:white;
+padding:4px;
+font-weight:300;
+letter-spacing: 1px;
+cursor:pointer;
+border-radius:6px;
+}
+#unfriend-alert{
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:rgba(0,0,0,0.7);
+    align-items:center;
+    display:none;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    text-align:center;
+}
+#unfriend-alert #inf{
+    width:400px;
+    height:120px;
+    opacity:1;
+    transform:scale(2);
+    margin:200px auto;
+    background-color:white;
+    text-align:middle;
+    vertical-align: middle;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+    border-radius:6px;
+    animation:alert 0.07s linear;
+    animation-fill-mode: forwards;
+}
+#alert-heading{
+    width:100%;
+    height:55%;
+    text-align:middle;
+    position: relative;
+    border-bottom:solid 1px rgb(0,0,0,0.4);
+    line-height:60px;
+    font-size:1.3rem;
+
+}
+#unfriend-user-btn{
+width:50%;
+margin:4px 0;
+padding:4px 6px;
+font-size:1.2rem;
+border:none;
+outline:none;
+background:white;
+color:red;
+border-right:1px solid rgb(0,0,0,0.5);
+cursor:pointer;
+}
+#cancel-unfriend-btn{
+margin:0;
+cursor:pointer;
+padding:4px 6px;
+font-size:1.2rem;
+border:none;
+outline:none;
+background:white;
+width:48%;
+color:black;
+}
+@keyframes alert{
+    to{
+        transform:scale(1);
+    }
+}
+
+/* liked by users css*/
+
+.parentclass{
+    display:inline-flex;
+width:90%;
+height:40px;
+margin:4px;
+vertical-align:middle;
+padding:4px 10px;
+font-family:sans-serif;
+text-transform:lowercase;
+border-bottom:solid 1px rgb(0,0,0,0.4);
+}
+.randomsearchimages{
+    display:inline-block;
+    border-radius:50%;
+    margin-left:10px;
+}
+.randomsearch-username{
+    display:block;
+    vertical-align:middle;
+    margin-left:10px;
+    cursor:pointer;
+    height:30%;
+}
+.randomsearchuser-name{
+    display:block;
+    opacity:0.8;
+    font-size:0.9rem;
+    margin-top:10px;
+    margin-left:10px;
+    font-family:lucid-sans;
+}
+.randomusernames{
+    display:inline-block;
+    width:130px;
+}   

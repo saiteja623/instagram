@@ -1,0 +1,285 @@
+body{
+    text-align:center;
+}
+#container{
+    display:inline-block;
+    margin-top:60px;
+    min-height:300px;
+    max-height: 600px;
+    width:500px;
+    padding:10px;
+    padding-left:40px;
+    border:1px solid black;
+    background:rgb(128, 128, 128,0.2);
+    text-align:initial;
+}
+#container #message{
+    border:1px solid red;
+    padding:4px 10px;
+    width:200px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+#image{
+    margin-top:20px;
+    float:left;
+}
+#desc{
+    width:90%;
+    max-height:140px;
+    line-height:23px;
+    padding:0 10px;
+    font-size:1.2rem;
+    margin-left:-20px;
+    text-transform:capitalize;
+    overflow:hidden;
+}
+#usersinfo{
+margin-left:10px;
+margin-bottom:20px;
+padding:10px;
+display: inline-block;
+}
+#update{
+    display:none;
+}
+.updateinfo{
+    margin:4px;
+    padding:6px;
+    width:90%;
+}
+.updateinfo label{
+    margin:3px;
+    padding:5px;
+    font-family:sans-serif;
+}
+.updateinfo input[type="text"]{
+    margin:4px;
+    width:100%;
+    border:0.6px solid black;
+    padding:4px;
+    font-size:1rem;
+    padding-left:6px;
+}
+.updateinfo input[type="file"]{
+    margin:4px;
+}
+.updateinfo input:focus{
+    border:solid 2px rgb(9, 76, 99);
+}
+img{
+    display:inline;
+    border-radius: 50%;
+}
+#user-othername{
+    font-family:'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.3rem;
+    padding:4px;
+    margin-left:-10px;
+}
+#select-bio-que-btn{
+    margin-top:20px;
+}
+#update-btn{
+    display:inline-block;
+    padding:4px;
+    font-weight:400;
+    cursor:pointer;
+    transition:0.2s all ease-out;
+    color:white;
+    background:green;
+    
+}
+#cancel-btn{
+    display:inline-block;
+    margin-left:20px;
+    margin-bottom:40px;
+    border:solid 1px red;
+    padding:4px;
+    background:red;
+    color:white;
+    cursor:pointer;
+}
+#update-bio-select{
+    display:none;
+}
+#update-bio-btn{
+    display:inline-block;
+    padding:4px;
+    font-weight:400;
+    cursor:pointer;
+    transition:0.2s all ease-out;
+    color:white;
+    background:green;
+    
+}
+#cancel-bio-btn{
+    display:inline-block;
+    margin-left:20px;
+    margin-bottom:40px;
+    border:solid 1px red;
+    padding:4px;
+    background:red;
+    color:white;
+    cursor:pointer;
+}
+/* friends of users */
+
+#no_friends{
+    display: inline-block;
+    position:fixed;
+    padding:6px;
+    font-size:1.2rem;
+    width:300px;
+    max-height:86%;
+    margin-left:40px;
+    margin-top:60px;
+    margin-bottom:60px;
+    background:white;
+    text-align:center;
+    padding-bottom:6px;
+    border:1px solid rgb(0,0,0,0.5);
+    box-shadow:3px 5px 4px gray;
+    border-radius:6px;
+}
+#usersfriends{
+    display: inline-block;
+    position:fixed;
+    width:300px;
+    max-height:86%;
+    margin-left:40px;
+    margin-top:60px;
+    margin-bottom:60px;
+    overflow-y:scroll;
+    scrollbar-width: none;
+    background:white;
+    text-align:center;
+    padding-bottom:6px;
+    border:1px solid rgb(0,0,0,0.5);
+    box-shadow:3px 5px 4px gray;
+    border-radius:6px;
+    vertical-align:middle;
+}
+#usersfriends .heading{
+    height:30px;
+    width:95%;
+    font-size:1.6rem;
+    padding:4px;
+    border-bottom:1px solid black;
+}
+#usersfriends  #inf{
+    overflow-y:scroll;
+    scrollbar-width: none;
+    height:90%;
+}
+.sugges_profile{
+    padding:8px;
+    height:50px;
+    width:100%;
+    margin:6px;
+}
+.sugges_profile img{
+    vertical-align: middle;
+    border-radius:50%;
+}
+.sugges_profile .innerdiv{
+    margin-left:4px;    
+    display:inline-block;
+    margin-top:2px;
+    font-family:sans-serif; 
+    font-weight:500;
+    vertical-align:middle;
+}
+.sugges_profile .innerdiv a{
+    text-decoration:none;
+    color:black;
+}
+.sugges_profile .innerdiv input{
+background:blue;
+color:white;
+padding:4px;
+font-weight:300;
+letter-spacing: 1px;
+cursor:pointer;
+border-radius:6px;
+}
+textarea{
+    resize: none;
+    width:80%;
+    height:130px;
+    font-size:1.2rem;
+    font-family:open sans;
+    letter-spacing:0.2px;
+    overflow:hidden;
+    white-space: pre-wrap;
+    padding:4px 8px;
+}
+#unfriend-alert{
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:rgba(0,0,0,0.7);
+    align-items:center;
+    display:none;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    text-align:center;
+}
+#unfriend-alert #inf{
+    width:400px;
+    height:120px;
+    opacity:1;
+    transform:scale(2);
+    margin:200px auto;
+    background-color:white;
+    text-align:middle;
+    vertical-align: middle;
+    align-items:center;
+    justify-content: center;
+    position: relative;
+    border-radius:6px;
+    animation:alert 0.07s linear;
+    animation-fill-mode: forwards;
+}
+#alert-heading{
+    width:100%;
+    height:55%;
+    text-align:middle;
+    position: relative;
+    border-bottom:solid 1px rgb(0,0,0,0.4);
+    line-height:60px;
+    font-size:1.3rem;
+
+}
+#unfriend-user-btn{
+width:50%;
+margin:4px 0;
+padding:4px 6px;
+font-size:1.2rem;
+border:none;
+outline:none;
+background:white;
+color:red;
+border-right:1px solid rgb(0,0,0,0.5);
+cursor:pointer;
+}
+#cancel-unfriend-btn{
+margin:0;
+cursor:pointer;
+padding:4px 6px;
+font-size:1.2rem;
+border:none;
+outline:none;
+background:white;
+width:48%;
+color:black;
+}
+@keyframes alert{
+    to{
+        transform:scale(1);
+    }
+}

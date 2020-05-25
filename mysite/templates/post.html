@@ -1,0 +1,47 @@
+{% extends 'instalikeshome.html' %}
+{% block style %}
+<style>
+body{
+    text-align:center;
+}
+#container{
+    display:inline-block;
+    width:570px;
+    height:300px;
+    border:1px solid rgb(0,0,0,0.43);
+    border-radius:6px;
+    margin-top:60px;
+    text-align:initial;
+    padding:10px;
+}
+#select-image{
+    margin:10px 4px;
+    padding:6px;
+}
+#enter-caption{
+    margin:10px 4px;
+}
+#caption-input{
+    margin:4px;
+    width:90%;
+    padding:4px 4px 4px 10px;
+
+}
+</style>
+{% endblock %}
+{% block content %}
+<div id="container">
+<form id="myform" action="create_post" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+    <div id="select-image">
+    Select image<br>
+    <input type="file" accept="image/*" name="image" >
+    </div>
+    <div id="enter-caption">
+    Enter figure caption here<br>
+    <input type="text" name="figcaption" id="caption-input">
+    </div>
+    <input type="submit" value="upload" id="upload-btn">
+    </form>
+</div>
+{% endblock %}

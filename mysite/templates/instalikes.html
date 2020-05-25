@@ -1,0 +1,59 @@
+{% extends 'instalikeshome.html' %}
+{% block  style%}
+{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/instalikes.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fontawesome/css/all.css' %}">
+{% endblock %}
+{% block content %}
+<div id="container">
+{% for i in l%}
+<div class="images">
+<img  src="{{i.image.url}}" onload="image_loaded({{i.id}},this)" ondblclick="likeByImage({{i.id}},this)" class="image" width="250" height="200">
+<div class="heart">
+<i onclick="menu({{i.id}},this)" class="far fa-heart"></i>
+</div>
+<p>Liked by  <a href="javascript:getLikes({{i.id}})"> {{i.likes}} others </a></p>
+</div>
+{% endfor %}
+</div>
+<div id="otherusers">
+	<div class="heading">Suggestions</div>
+	<div id="inf">
+	{% for i in allusers %}
+	<div class="sugges_profile">
+	<img src="{{i.user.userprofile.image.url}}" onload="checkforFriend({{i.id}},this)" width="50" height="50">
+	<div class="innerdiv">
+	<div id="username" ><a href="{% url 'homepage_user' i.user %}">{{i.user}}</a> </div>
+	<div>
+	<input type="submit" onclick="sendreq({{i.id}},this)">
+	</div>	
+	</div>
+	</div>
+	{% endfor %}
+	</div>
+</div>
+<div id="likedby">
+	<div id="content">
+		<div id="heading">
+			<p>Likes</p>
+			<div id="close"> 
+				+
+			</div>
+		</div>
+		<div id="likes">
+		</div>	
+	</div>
+</div>
+<div id="unfriend-alert">
+	<div id="inf">
+		<div id="alert-heading">
+		</div>	
+		<input type="submit" value="unfriend"  id="unfriend-user-btn">
+		<input type="submit" value="cancel"   id="cancel-unfriend-btn">	
+	</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/instalikes.js' %}"></script>
+{% endblock %}
